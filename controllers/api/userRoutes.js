@@ -16,30 +16,26 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Log in router
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password" });
+      res.status(400).json({ message: "Incorrect email or password" });
       return;
     }
 
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password" });
+      res.status(400).json({ message: "Incorrect email or password" });
       return;
     }
 
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-
       res.json({ user: userData, message: "You are now logged in!" });
     });
   } catch (err) {
@@ -47,6 +43,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Log out router
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
