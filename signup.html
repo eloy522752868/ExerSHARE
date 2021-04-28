@@ -15,17 +15,59 @@
   <body>
     <header class="jumbotron">
       <h1 class="text-center">ExerSHARE</h1>
-    </header>
-    <nav>
-        <img src="https://media.tenor.com/images/86bf40ab0c91a07dcd2d2f6e0eb4b2b6/tenor.png" class="rounded mx-auto d-block" alt="Responsive image">
-    </nav>
-    <main class="mx-auto" style="width: 200px;">
-        <div>
 
-        <button  type="button" class="btn btn-primary">Primary</button>                       <button type="button" class="btn btn-warning">warning </button></h2>
-      
-      <div class="gallery">{{{body}}}</div>
-    </main>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Dropdown link
+              </a>
+              <div
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>{{{body}}}</main>
 
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
