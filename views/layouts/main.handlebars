@@ -37,12 +37,15 @@
               >
             </li>
             <!-- /// can combine log in/out together or sess it out/// -->
+            {{#if logged_in}}
             <li class="nav-item">
-              <a class="nav-link" href="#">Log in</a>
+              <a class="nav-link" id="logout" href="#">Log Out</a>
             </li>
+            {{else}}
             <li class="nav-item">
-              <a class="nav-link" href="#">Log out</a>
+              <a class="nav-link" href="/login">Log In</a>
             </li>
+            {{/if}}
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -85,6 +88,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <script src="/js/results.js"></script>
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
   </body>
 </html>
