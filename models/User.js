@@ -1,4 +1,4 @@
-//creating user model user table egon 04/28/2021
+//creating user model user table egon fixed issue 04/28/2021
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
