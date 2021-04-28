@@ -1,19 +1,27 @@
-router.get('/', async (req, res) => {
-  try {
-    // Get all projects and JOIN with user data
-    const blogData = await Blog.findAll({
-
-    });
-
-    // Serialize data so the template can read it
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      blogs, 
-      logged_in: req.session.logged_in 
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+{{#if logged_in}}
+<h1>ROUTINES PLACEHOLDER</h1>
+{{else}}
+<div class="row">
+  <div class="col-md-6">
+    <h2>Sign up for ExerSHARE</h2>
+    <form class="form signup-form">
+      <div class="form-group">
+        <label for="name-signup">Name:</label>
+        <input class="form-input" type="text" id="name-signup" />
+      </div>
+      <div class="form-group">
+        <label for="email-signup">Email:</label>
+        <input class="form-input" type="text" id="email-signup" />
+      </div>
+      <div class="form-group">
+        <label for="password-signup">Password:</label>
+        <input class="form-input" type="password" id="password-signup" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Sign Up!</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="./js/login.js"></script>
+{{/if}}
