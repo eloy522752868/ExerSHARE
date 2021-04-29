@@ -1,6 +1,6 @@
 <div class="row  jumbotron">
   <div class="col-md-6">
-    <h2>Exercises</h2>
+    <h2>{{name}}'s Exercises</h2>
 
    <div id="container">
       <select style="width: 290px; color: red; font-size: 20px;" id="dropdown1" name="category">
@@ -18,34 +18,22 @@
 </div>
 
 </div>
-
+  {{#if routines.length}}
   <div class="col-md-6 project-list">
     <h3>My daily workout:</h3>
+   {{#each blogs as |blog|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/">Barbell Wrist Curl</a></h4>
+        <h4><a href="/project/">{{routine.title}}</a></h4>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="33">DELETE</button>
       </div>
     </div>
-        <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/">Extenseurs - Face</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="33">DELETE</button>
-      </div>
+   {{/each}}
+   
     </div>
-        <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/">Lateral Raises on Cable, One Armed</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="33">DELETE</button>
-      </div>
-    </div>
-
+  {{/if}}
   </div>
 
     <script

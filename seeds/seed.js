@@ -6,7 +6,7 @@ const routineData = require("./routines.json");
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
 
-  const users = await User.bulkCreate(userData, {
+   const users = await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
   });
@@ -18,3 +18,4 @@ const seedDatabase = async () => {
   process.exit(0);
 };
 seedDatabase();
+
