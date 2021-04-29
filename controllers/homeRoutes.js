@@ -23,23 +23,14 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/log/goal',  function(req, res){
-  var options = {
-    host : 'https://wger.de/',
-    path : '/api/v2/exercisecategory/',
-    method : 'GET'
-  }
 
-  var req = http.request(options, function(res){
-    var body = "";
-    res.on('data', function(data) {
-        console.log('data came');
-        body += data;
-    });
-    res.on('end', function() {
-        console.log('ended too');
-        response.send(body);
-    });
+// Route to profile if logged in
+router.get("/dashboard", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect("/dashboard");
+    return;
+  }
+  res.render("dashboard");
 });
 
 // Route to profile if logged in
