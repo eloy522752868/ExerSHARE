@@ -3,10 +3,10 @@ const { User } = require("../models");
 // const withAuth = require("../utils/auth");
 
 // Route to root/homepage
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    res.render('homepage', { 
-      logged_in: req.session.logged_in 
+    res.render("homepage", {
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -16,16 +16,18 @@ router.get('/', async (req, res) => {
 // Route to profile if logged in
 router.get("/dashboard", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/dashboard");
+    res.render("dashboard", {
+      logged_in: req.session.logged_in,
+    });
     return;
   }
-  res.render("dashboard");
+  res.redirect("/");
 });
 
 // Route to profile if logged in
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/profile");
+    res.redirect("/dashboard");
     return;
   }
   res.render("login");
