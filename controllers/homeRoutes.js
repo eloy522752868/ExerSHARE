@@ -37,16 +37,23 @@ router.get("/dashboard", withAuth, async (req, res) => {
 // Route to profile if logged in
 /* router.get("/dashboard", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/dashboard");
+    res.render("dashboard", {
+      logged_in: req.session.logged_in,
+    });
     return;
   }
+<<<<<<< HEAD
   res.render("dashboard");
 }); */
+=======
+  res.redirect("/");
+});
+>>>>>>> 29a59cd02e7b985dc5bb1bb94f95449ae0bee87a
 
 // Route to profile if logged in
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/profile");
+    res.redirect("/dashboard");
     return;
   }
   res.render("login");
