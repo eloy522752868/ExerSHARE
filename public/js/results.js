@@ -83,6 +83,7 @@ function WorkoutExerciseCategoryApi(val) {
       $("#container2").empty();
       for (var i = 0; i < WorkoutWorkout.length; i++) {
         $("#container2").append(`<div class="card" style="width: 18rem;">
+
         <img id="img-${WorkoutWorkout[i].id}" class="card-img-top" src="https://wger.de/media/exercise-images/83/Bench-dips-1.png" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">${WorkoutWorkout[i].name}</h5>
@@ -103,6 +104,7 @@ function WorkoutExerciseCategoryApi(val) {
         </div>
         </div>
       </div>`);
+
         console.log(WorkoutWorkout[i]);
         var requestUrl =
           "https://wger.de/api/v2/exerciseimage/?exercise=" +
