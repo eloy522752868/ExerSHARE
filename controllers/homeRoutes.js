@@ -34,22 +34,27 @@ router.get("/home", withAuth, async (req, res) => {
 });
 
 // go home withAuth middleware to prevent access to route
-router.get("/", withAuth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    console.log(req.session.user_id);
+    /*    console.log(req.session.user_id);
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
       include: [{ model: Routines }],
     });
-
     const user = userData.get({ plain: true });
-    console.log(user);
+    console.log(user); */
+    const projectData = await Routines.findAll({});
+
+    // Serialize data so the template can read it
+    const routines = projectData.map((project) => project.get({ plain: true }));
+
     res.render("homepage", {
-      ...user,
-      logged_in: true,
+      routines,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
