@@ -10,6 +10,10 @@
  * add variables for traversing the DOM and api credentials for trademark
  */
 var testglobal;
+var globaltitle;
+var globaleceid;
+var testglobal;
+
 function WorkoutCategoryApi() {
   //alert("testapi");
 
@@ -110,9 +114,10 @@ function WorkoutExerciseCategoryApi(val) {
           console.log($(this).parent().find("#cardtitle").html());
           console.log($(this).parent().find(".card-img-top").html());
           //const  description= document.querySelector('#project-funding').value.trim();
+
           const description = $(this).parent().find("#cardtitle").html();
           const exerciseId = 718; //$(this).parent().find(".card-img-top").html();
-          newFormHandler();
+          newFormHandler(exerciseId, description);
         });
 
         console.log(WorkoutWorkout[i]);
@@ -144,16 +149,19 @@ function WorkoutExerciseCategoryApi(val) {
 $("#dropdown1").change(function () {
   var selectedValue = $("#dropdown1").val();
   WorkoutExerciseCategoryApi(selectedValue);
+  globaltitle = $(this).parent().find("#cardtitle").html();
+  globaleceid = 22;
   //  alert("Selected Value: " + selectedValue);
   //window.open('https://www.uspto.gov/trademarks/apply/initial-application-forms', '_blank');
 });
 
-const newFormHandler = async (event) => {
-  alert("FF");
-  const title = "sss";
+const newFormHandler = async (exerciseId, description) => {
+  alert(exerciseId);
+  alert(description);
+  const title = description;
 
   //const  description= document.querySelector('#project-funding').value.trim();
-  const exercise_id = 716;
+  const exercise_id = exerciseId;
 
   if (exercise_id && title) {
     const response = await fetch(`/api/routines`, {
