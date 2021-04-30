@@ -83,13 +83,12 @@ function WorkoutExerciseCategoryApi(val) {
       $("#container2").empty();
       for (var i = 0; i < WorkoutWorkout.length; i++) {
         $("#container2").append(`<div class="card" style="width: 18rem;">
-
         <img id="img-${WorkoutWorkout[i].id}" class="card-img-top" src="https://wger.de/media/exercise-images/83/Bench-dips-1.png" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title">${WorkoutWorkout[i].name}</h5>
+          <h5 id = "cardtitle" class="card-title">${WorkoutWorkout[i].name}</h5>
           <p class="card-text">${WorkoutWorkout[i].description}</p>
-          <a href="#" class="btn btn-primary">add it to your list</a>
-          <p class="card-text">${WorkoutWorkout[i].description}</p>
+          <input id = "btnSubmit-${WorkoutWorkout[i].id}" type="submit" value="add it to your list"/>
+          <p class="card-text"></p>
           <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
           <label class="form-check-label" for="inlineCheckbox1">M</label>
@@ -104,6 +103,17 @@ function WorkoutExerciseCategoryApi(val) {
         </div>
         </div>
       </div>`);
+        var msg = WorkoutWorkout[i].id;
+        $(`#btnSubmit-${WorkoutWorkout[i].id}`).click(function (event) {
+          event.preventDefault();
+
+          console.log($(this).parent().find("#cardtitle").html());
+          console.log($(this).parent().find(".card-img-top").html());
+          //const  description= document.querySelector('#project-funding').value.trim();
+          const description = $(this).parent().find("#cardtitle").html();
+          const exerciseId = 718; //$(this).parent().find(".card-img-top").html();
+          newFormHandler();
+        });
 
         console.log(WorkoutWorkout[i]);
         var requestUrl =
@@ -138,7 +148,50 @@ $("#dropdown1").change(function () {
   //window.open('https://www.uspto.gov/trademarks/apply/initial-application-forms', '_blank');
 });
 
+const newFormHandler = async (event) => {
+  alert("FF");
+  const title = "sss";
+
+  //const  description= document.querySelector('#project-funding').value.trim();
+  const exercise_id = 716;
+
+  if (exercise_id && title) {
+    const response = await fetch(`/api/routines`, {
+      method: "POST",
+      body: JSON.stringify({ title, exercise_id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      alert("Failed to create routine");
+    }
+  }
+};
+
+const delButtonHandler = async (event) => {
+  if (event.target.hasAttribute("data-id")) {
+    const id = event.target.getAttribute("data-id");
+
+    const response = await fetch(`/api/routines/${id}`, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      alert("Failed to delete routine");
+    }
+  }
+};
+
 //call function
 
 WorkoutExerciseCategoryApi();
 WorkoutCategoryApi();
+
+document
+  .querySelector(".project-list")
+  .addEventListener("click", delButtonHandler);

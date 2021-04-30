@@ -1,0 +1,27 @@
+<div class="row  jumbotron">
+  {{#if routines.length}}
+  <div class="col-md-6 project-list">
+        <h2>Dashboard Users View </h2>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Eloy's Routing</h5>
+    <p class="card-text">This is my amazing workout.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+   {{#each routines as |routine|}}
+    <li class="list-group-item"> <h5>exercise</h5> {{routine.title}}<img id="IMG" class="card-img-top" src="https://wger.de/media/exercise-images/83/Bench-dips-1.png" </li>
+   {{/each}}
+
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">View Details</a>
+    <a href="#" class="card-link">Use this routine</a>
+  </div>
+</div>
+  {{/if}}
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+
+<script src="./js/results.js"></script>
