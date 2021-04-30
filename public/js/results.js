@@ -164,7 +164,7 @@ const newFormHandler = async (event) => {
       },
     });
     if (response.ok) {
-      document.location.replace("/dashboard");
+      document.location.replace("/home");
     } else {
       alert("Failed to create routine");
     }
@@ -180,7 +180,7 @@ const delButtonHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/dashboard");
+      document.location.replace("/home");
     } else {
       alert("Failed to delete routine");
     }
