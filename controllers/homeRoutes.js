@@ -14,6 +14,29 @@ router.get("/", async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
+
+// Use withAuth middleware to prevent access to route
+router.get("/generaldashboard", withAuth, async (req, res) => {
+  try {
+    console.log(req.session.user_id);
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+      include: [{ model: Routines }],
+    });
+
+    const user = userData.get({ plain: true });
+    console.log(user);
+    res.render("generaldashboard", {
+      ...user,
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Use withAuth middleware to prevent access to route
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
     console.log(req.session.user_id);
@@ -42,13 +65,8 @@ router.get("/dashboard", withAuth, async (req, res) => {
     });
     return;
   }
-<<<<<<< HEAD
   res.render("dashboard");
 }); */
-=======
-  res.redirect("/");
-});
->>>>>>> 29a59cd02e7b985dc5bb1bb94f95449ae0bee87a
 
 // Route to profile if logged in
 router.get("/login", (req, res) => {
