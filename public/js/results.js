@@ -156,8 +156,6 @@ $("#dropdown1").change(function () {
 });
 
 const newFormHandler = async (exerciseId, description) => {
-  alert(exerciseId);
-  alert(description);
   const title = description;
 
   //const  description= document.querySelector('#project-funding').value.trim();
