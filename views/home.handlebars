@@ -1,42 +1,42 @@
 <div class="row  jumbotron">
   <div class="col-md-6">
-    <h2>{{name}}'s Exercises</h2>
+    <h2 style="background-color:rgb(53, 54, 54);" class="text-white">{{name}}'s Exercises</h2>
 
-   <div id="container">
-      <select style="width: 290px; color: red; font-size: 20px;" id="dropdown1" name="category">
+    <div id="container">
+      <select style="width: 290px; color: dodgerblue; font-size: 20px;" id="dropdown1" name="category">
       </select>
-   </div>
-      <div id="container2">
+    </div>
+    <div id="container2">
 
-   </div>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Select Category
-  </button>
-  <div id = "dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Select Category
+      </button>
+      <div id="dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      </div>
+    </div>
+
   </div>
-</div>
-
-</div>
   {{#if routines.length}}
   <div class="col-md-6 project-list">
-    <h3>My daily workout:</h3>
-   {{#each routines as |routine|}}
+    <h3 class="container" style="background-color: dodgerblue;">My daily workout:</h3>
+    {{#each routines as |routine|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/">{{routine.title}}</a></h4>
+        <h4><a href="/project/" style="background-color: rgb(53, 54, 54);" class="text-white">{{routine.title}}</a></h4>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{routine.id}}">DELETE</button>
       </div>
     </div>
-   {{/each}}
-   
-    </div>
-  {{/if}}
+    {{/each}}
+
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+  {{/if}}
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
 <script src="./js/results.js"></script>
