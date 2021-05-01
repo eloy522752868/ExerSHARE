@@ -16,6 +16,10 @@ Routines.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    weekdays: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
     exercise_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
