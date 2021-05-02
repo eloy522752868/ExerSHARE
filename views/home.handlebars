@@ -24,7 +24,7 @@
    {{#each routines as |routine|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/">{{routine.title}}</a>  <h7>{{routine.weekdays}}</h7></h4>
+        <h4><a href="/exercise/{{routine.exercise_id}}">{{routine.title}}</a>  <h7>{{routine.weekdays}}</h7></h4>
       </div>
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{routine.id}}">DELETE</button>
