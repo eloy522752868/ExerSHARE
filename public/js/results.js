@@ -7,7 +7,7 @@
 
 /**Decalared Variables
  * Last Modified: 04/29/2021 Egon
- * add variables for traversing the DOM and api credentials for trademark
+ * add variables for traversing the DOM and api credentials for trademarks
  */
 var testglobal;
 var globaltitle;
