@@ -46,4 +46,13 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+// Route to an individual exercise page
+router.get("/exercise/:id", (req, res) => {
+  try {
+    res.render("exercise");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
