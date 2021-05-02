@@ -61,7 +61,7 @@ function WorkoutExerciseImages(exerciseid) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data.results);
+      // console.log(data.results);
       return data.results;
       //   data.results[0].image
       // callback("https://wger.de/media/exercise-images/83/Bench-dips-1.png");
@@ -74,7 +74,9 @@ function WorkoutExerciseCategoryApi(val) {
   let abc = 0;
 
   var requestUrl =
-    "https://wger.de/api/v2/exercise/?limit=20&offset=20&category=" + val + "";
+    "https://wger.de/api/v2/exercise/?limit=20&offset=20&language=2&category=" +
+    val +
+    "";
   const imglink = fetch(requestUrl)
     .then(function (response) {
       return response.json();
@@ -93,34 +95,42 @@ function WorkoutExerciseCategoryApi(val) {
           <p class="card-text">${WorkoutWorkout[i].description}</p>
           <input id = "btnSubmit-${WorkoutWorkout[i].id}" type="submit" value="add it to your list"/>
           <p class="card-text"></p>
-          <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">M</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-          <label class="form-check-label" for="inlineCheckbox2">T</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-          <label class="form-check-label" for="inlineCheckbox3">W</label>
-        </div>
+          <span class="checkbox"><label><input type="checkbox" value="M" name="day">M</label></span>
+          <span class="checkbox"><label><input type="checkbox" value="Tu" name="day">Tu</label></span>
+          <span class="checkbox"><label><input type="checkbox" value="W" name="day">W</label></span>
+          <span class="checkbox"><label><input type="checkbox" value="Th" name="day">Th</label></span>
+          <span class="checkbox"><label><input type="checkbox" value="F" name="day">F</label></span>
+          <span class="checkbox"><label><input type="checkbox" value="Sa" name="day">Sa</label></span >
+          <span class="checkbox"><label><input type="checkbox" value="Su" name="day">Su</label></span >
         </div>
       </div>`);
         var msg = WorkoutWorkout[i].id;
         $(`#btnSubmit-${WorkoutWorkout[i].id}`).click(function (event) {
           event.preventDefault();
-
-          console.log($(this).parent().find("#cardtitle").html());
-          console.log($(this).parent().find(".card-img-top").html());
+          // console.log($(this).parent().find("#cardtitle").html());
+          //console.log(this.id);
           //const  description= document.querySelector('#project-funding').value.trim();
 
-          const description = $(this).parent().find("#cardtitle").html();
-          const exerciseId = 718; //$(this).parent().find(".card-img-top").html();
-          newFormHandler(exerciseId, description);
+          // console.log($(this).parent().find("#cardtitle").html());
+          //console.log($(this).parent().find(".card-img-top").html());
+          const description = $(this).parent().find("#cardtitle").html().trim();
+
+          //  var id = this.id.slice(10, 30);
+          //  alert($(this).parent().find("#cardtitle").html());
+          const exerciseId = this.id.slice(10, 30).trim(); //$(this).parent().find(".card-img-top").html();
+          var days = [];
+          $.each($("input[name='day']:checked"), function () {
+            days.push($(this).val());
+          });
+
+          $.each($("input[name='day']:checked"), function () {
+            $(this).prop("checked", false);
+          });
+
+          newFormHandler(exerciseId, description, days);
         });
 
-        console.log(WorkoutWorkout[i]);
+        // console.log(WorkoutWorkout[i]);
         var requestUrl =
           "https://wger.de/api/v2/exerciseimage/?exercise=" +
           WorkoutWorkout[i].id;
@@ -129,14 +139,14 @@ function WorkoutExerciseCategoryApi(val) {
             return response.json();
           })
           .then(function (data) {
-            console.log(data.results);
+            //  console.log(data.results);
             if (data.results && data.results.length && data.results[0].image) {
-              console.log(data.results[0].image);
+              // console.log(data.results[0].image);
               img = data.results[0].image;
-              console.log($(`#img-${data.results[0].exercise}`));
+              //  console.log($(`#img-${data.results[0].exercise}`));
               $(`#img-${data.results[0].exercise}`).attr(`src`, img);
             } else {
-              console.log("no image");
+              // console.log("no image");
               img = "https://wger.de/media/exercise-images/83/Bench-dips-1.png";
               //  https://wger.de/media/exercise-images/83/Bench-dips-1.png
             }
@@ -155,16 +165,23 @@ $("#dropdown1").change(function () {
   //window.open('https://www.uspto.gov/trademarks/apply/initial-application-forms', '_blank');
 });
 
-const newFormHandler = async (exerciseId, description) => {
+const newFormHandler = async (exerciseId, description, days) => {
   const title = description;
+  weekdsaysArray = days;
+  // weekdsaysArray.push("M");
+  // weekdsaysArray.push("T");
+  // weekdsaysArray.push("W");
+  //weekdsaysArray.push("Th");
+  // weekdsaysArray.push("F");
 
+  const weekdays = weekdsaysArray;
   //const  description= document.querySelector('#project-funding').value.trim();
   const exercise_id = exerciseId;
 
   if (exercise_id && title) {
     const response = await fetch(`/api/routines`, {
       method: "POST",
-      body: JSON.stringify({ title, exercise_id }),
+      body: JSON.stringify({ title, exercise_id, weekdays }),
       headers: {
         "Content-Type": "application/json",
       },
