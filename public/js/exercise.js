@@ -10,20 +10,24 @@ function displayExercise(exerciseId) {
     .then(function (data) {
       console.log(data);
       $("#exercise-container").empty();
-      $("#exercise-container").append(`<div class="card" style="width: 18rem;">
-        <div class="card-body">
-        <h3 class="card-title">${data.name}</h3>
-        <h4 class="card-subtitle">${data.category.name}</h4>
-        <p class="card-text">${data.description}</p>
-        <span class="checkbox"><label><input type="checkbox" value="M" name="day">M</label></span>
-        <span class="checkbox"><label><input type="checkbox" value="Tu" name="day">Tu</label></span>
-        <span class="checkbox"><label><input type="checkbox" value="W" name="day">W</label></span>
-        <span class="checkbox"><label><input type="checkbox" value="Th" name="day">Th</label></span>
-        <span class="checkbox"><label><input type="checkbox" value="F" name="day">F</label></span>
-        <span class="checkbox"><label><input type="checkbox" value="Sa" name="day">Sa</label></span >
-        <span class="checkbox"><label><input type="checkbox" value="Su" name="day">Su</label></span >
-        <input id = "btnSubmit-${data.id}" type="submit" value="add it to your list"/>
-    </div>`);
+      $("#exercise-container").append(`
+        <div class="card m-5" style="width: 30rem;">
+          <div class="card-header font-weight-bolder text-uppercase"><h3>${data.name}</h3></div>
+          <div class="card-body">
+            <h5 class="card-subtitle">${data.category.name}</h5>
+            <p class="card-text">${data.description}</p>
+            <span class="checkbox"><label><input type="checkbox" value="M" name="day">M</label></span>
+            <span class="checkbox"><label><input type="checkbox" value="Tu" name="day">Tu</label></span>
+            <span class="checkbox"><label><input type="checkbox" value="W" name="day">W</label></span>
+            <span class="checkbox"><label><input type="checkbox" value="Th" name="day">Th</label></span>
+            <span class="checkbox"><label><input type="checkbox" value="F" name="day">F</label></span>
+            <span class="checkbox"><label><input type="checkbox" value="Sa" name="day">Sa</label></span >
+            <span class="checkbox"><label><input type="checkbox" value="Su" name="day">Su</label></span >
+            <br>
+            <input id = "btnSubmit-${data.id}" type="submit" value="Save to Routine"/>
+          </div>
+        </div>
+      `);
 
       $(`#btnSubmit-${data.id}`).click(function (event) {
         event.preventDefault();

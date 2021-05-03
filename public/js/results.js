@@ -93,7 +93,6 @@ function WorkoutExerciseCategoryApi(val) {
         <div class="card-body">
           <h5 id = "cardtitle" class="card-title">${WorkoutWorkout[i].name}</h5>
           <p class="card-text">${WorkoutWorkout[i].description}</p>
-          <input id = "btnSubmit-${WorkoutWorkout[i].id}" type="submit" value="add it to your list"/>
           <p class="card-text"></p>
           <span class="checkbox"><label><input type="checkbox" value="M" name="day">M</label></span>
           <span class="checkbox"><label><input type="checkbox" value="Tu" name="day">Tu</label></span>
@@ -102,6 +101,8 @@ function WorkoutExerciseCategoryApi(val) {
           <span class="checkbox"><label><input type="checkbox" value="F" name="day">F</label></span>
           <span class="checkbox"><label><input type="checkbox" value="Sa" name="day">Sa</label></span >
           <span class="checkbox"><label><input type="checkbox" value="Su" name="day">Su</label></span >
+          <br>
+          <input id = "btnSubmit-${WorkoutWorkout[i].id}" type="submit" value="Save to Routine"/>
         </div>
       </div>`);
         var msg = WorkoutWorkout[i].id;

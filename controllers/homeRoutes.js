@@ -53,6 +53,7 @@ router.get("/exercise/:id", (req, res) => {
   try {
     res.render("exercise", {
       user_id: req.session.user_id,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
