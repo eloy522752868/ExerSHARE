@@ -1,32 +1,25 @@
 {{#if logged_in}}
 <div class="container">
   {{#if routines.length}}
-  <div class="row">
-    <h2>Dashboard Users Exercises</h2>
- </div>
-                  <div class="row flex-row flex-nowrap" id ="five-day-container">
-                         {{#each routines as |routine|}}
-                            <div class="col-4">
-                                <div class="card card-block" id ="fiveDay2">         
-                                   <ul class="list-group list-group-flush"></ul>
-                                   <div class="card-body">
-                                    <h5 class="card-title">{{user.name}}'s Exercises</h5>     
-                                    <h5 class="card-subtitle">{{routine.title}}</h5>
-                                    <h7 class="text-success" >Days to do this exercise</h7>
-                                    <p class="card-text">{{routine.weekdays}}</p>
-                                    <a href="/exercise/{{routine.exercise_id}}" class="card-link">View Details</a>                         
-                                 </div>
-                                 </ul>
-                                 <div class="card-body">
-                                </div>             
-                              </div>            
-                            </div>
-                              {{/each}}
-                            </div>
-     </div>
-     
-      </body>
-      </html>
+  <div class="column">
+  <h2 class="p-2">Dashboard Users Exercises</h2>
+    <div class="d-flex flex-row flex-wrap">
+    {{#each routines as |routine|}}
+      <div class="col-3 p-2">
+        <div class="card"> 
+          <div class="card-header font-weight-bolder text-uppercase">{{routine.title}}</div>        
+            <div class="card-body">
+              <h5 class="card-title">{{user.name}}</h5>    
+              <h6 class="card-text">Days: {{routine.weekdays}}</h6>
+              <a href="/exercise/{{routine.exercise_id}}" class="btn btn-primary">View Exercise</a>                         
+            </div>      
+          </div>            
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -36,7 +29,7 @@
       {{else}}
       <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
-            <img class="h-5000 d-inline-block" style="width: 160px" src="https://lh3.googleusercontent.com/proxy/5oTfDV_CA6bj_2XPAe4FM-3FHfF-x09IbWVJ_gN35pxviYOSyyuZpplJPIeRd3l7ybPI3XunSlY5t-HJSMhGnIdxwI6jgVYZViOf_IeVkhOLJPSpLMbm-t7fNAoFS8H3xrdW91BCXthw4BrKYw">
+            <img class="h-5000 d-inline-block" style="width: 160px" src="https://img.icons8.com/ios/452/dumbbell--v2.png">
       </div> 
         <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
           <h2>Sign up for ExerSHARE</h2>

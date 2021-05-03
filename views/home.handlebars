@@ -1,26 +1,7 @@
-<div class="row  jumbotron">
-  <div class="col-md-6">
-    <h2>{{name}}'s Exercises</h2>
-
-   <div id="container">
-      <select style="width: 290px; color: red; font-size: 20px;" id="dropdown1" name="category">
-      </select>
-   </div>
-      <div id="container2">
-
-   </div>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Select Category
-  </button>
-  <div id = "dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  </div>
-</div>
-
-</div>
-  {{#if routines.length}}
+<div class="row p-5">
+    {{#if routines.length}}
   <div class="col-md-6 project-list">
-    <h3>My daily workout:</h3>
+    <h3>{{name}}'s Daily Routines:</h3>
    {{#each routines as |routine|}}
     <div class="row mb-2">
       <div class="col-md-8">
@@ -29,13 +10,30 @@
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{routine.id}}">DELETE</button>
       </div>
+      </div>
+      {{/each}}
     </div>
-   {{/each}}
-   
+    {{/if}}
+  <div class="col-md-6">
+  <h2>Choose Category</h2>
+    <div id="container">
+      <select style="width: 290px; color: red; font-size: 20px;" id="dropdown1" name="category">
+      </select>
     </div>
-  {{/if}}
+  <div id="container2">
+</div>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select Category
+  </button>
+  <div id = "dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  </div>
+
+  </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
 
