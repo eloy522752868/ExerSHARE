@@ -1,41 +1,37 @@
 {{#if logged_in}}
-<div class="container-fluid">
+<div class="container">
   {{#if routines.length}}
-  <div class="col-md-6 project-list">
-    <h2>Dashboard Users View </h2>
-    <div>
-      <div class="container-fluid">
-        <h1>Eloy's Workout</h1>
-        <div class="row">
-          <div class="col" style="background-color:gray;">
-            <div class="card-body">
-              <h5 class="card-title">Workout name</h5>
-              <p class="card-text">workout description</p>
-            </div>
-            <div class="list-group list-group-flush">
-              {{#each routines as |routine|}}
-              <div class="list-group-item">
-                <h5>exercise</h5> {{routine.title}}<img id="IMG" class="card-img-top"
-                  src="https://wger.de/media/exercise-images/83/Bench-dips-1.png" />
-                  <span>{{routine.weekdays}}</span>
-                  <a href="/exercise/{{routine.exercise_id}}" class="card-link">View Details</a>
-                {{/each}}
-            </div>
-            </div>
-            <div class="card-body">
-              <a href="/exercise/{{routine.exercise_id}}" class="card-link">View Details</a>
-              <a href="#" class="card-link">Use this routine</a>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="row">
+    <h2>Dashboard Users Exercises</h2>
+ </div>
+                  <div class="row flex-row flex-nowrap" id ="five-day-container">
+                         {{#each routines as |routine|}}
+                            <div class="col-4">
+                                <div class="card card-block" id ="fiveDay2">         
+                                   <ul class="list-group list-group-flush"></ul>
+                                   <div class="card-body">
+                                    <h5 class="card-title">{{user.name}}'s Exercises</h5>     
+                                    <h5 class="card-subtitle">{{routine.title}}</h5>
+                                    <h7 class="text-success" >Days to do this exercise</h7>
+                                    <p class="card-text">{{routine.weekdays}}</p>
+                                    <a href="/exercise/{{routine.exercise_id}}" class="card-link">View Details</a>                         
+                                 </div>
+                                 </ul>
+                                 <div class="card-body">
+                                </div>             
+                              </div>            
+                            </div>
+                              {{/each}}
+                            </div>
+     </div>
+     
       </body>
       </html>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-
       <script src="./js/results.js"></script>
+     
       {{/if}}
       {{else}}
       <div class="row">

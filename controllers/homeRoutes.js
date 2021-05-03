@@ -24,9 +24,11 @@ router.get("/home", withAuth, async (req, res) => {
 // go home withAuth middleware to prevent access to route
 router.get("/", async (req, res) => {
   try {
-    const projectData = await Routines.findAll({});
-    const routines = projectData.map((project) => project.get({ plain: true }));
-
+    const RoutineData = await Routines.findAll({
+      include: [{ model: User }],
+    });
+    const routines = RoutineData.map((project) => project.get({ plain: true }));
+    console.log(routines);
     res.render("homepage", {
       routines,
       logged_in: req.session.logged_in,
